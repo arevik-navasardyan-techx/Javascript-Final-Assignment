@@ -32,7 +32,6 @@ const SORT_MAP = {
   "Title (Z-A)": "original_title.desc",
 };
 
-// ui helpers
 function showSection(btn, sectionEl, arrowEl) {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -98,16 +97,16 @@ function fetchMoviesFiltered(page, queryString) {
     .then((json) => addMovies(json.results || []));
 }
 
-function buildDiscoverQueryFromForm() {
-  const params = new URLSearchParams();
+function buildQuery() {
+  const params = new URLSearchParams(); //?key=value&other=value
   const sortLabel = sortSelect?.value || "Popularity Descending";
   params.set("sort_by", SORT_MAP[sortLabel] || "popularity.desc");
 
-  const selectedGenreIds = Array.from(
-    filterForm.querySelectorAll('input[name="genre"]:checked')
-  )
+  const selectedGenreIds = [
+    ...filterForm.querySelectorAll('input[name="genre"]:checked'),
+  ]
     .map((cb) => GENRE_MAP[cb.value])
-    .filter(Boolean);
+    .filter((value) => Boolean(value));
   if (selectedGenreIds.length)
     params.set("with_genres", selectedGenreIds.join(","));
 
@@ -170,7 +169,7 @@ filterForm.addEventListener("submit", (e) => {
   e.preventDefault();
   currentPage = 1;
   movieSection.innerHTML = "";
-  currentQuery = buildDiscoverQueryFromForm();
+  currentQuery = buildQuery();
   isFiltered = true;
   fetchMoviesFiltered(currentPage, currentQuery).finally(() => {
     searchBtn.disabled = true;
