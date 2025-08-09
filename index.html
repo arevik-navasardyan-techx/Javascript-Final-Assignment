@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Popular Movies</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-left">
+        <div class="logo">
+          <a href="#" class="tmdb"
+            ><img src="images/smallLogo.svg" alt="Logo" height="20px"
+          /></a>
+        </div>
+        <nav class="navigation">
+          <ul>
+            <li><a href="#">Movies</a></li>
+            <li><a href="#">TV Shows</a></li>
+            <li><a href="#">People</a></li>
+            <li><a href="#">More</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="actions">
+        <button class="plus">
+          <img src="images/plus.svg" alt="Plus" width="25px" height="25px" />
+        </button>
+
+        <button class="lang">EN</button>
+        <button class="login">Login</button>
+        <button class="join">Join TMDB</button>
+        <button class="search">
+          <img
+            src="images/search.svg"
+            alt="Search"
+            width="30px"
+            height="30px"
+          />
+        </button>
+      </div>
+      <div class="mobile-header">
+        <button>
+          <img
+            src="images/hamburger.svg"
+            alt="Hamburger Menu"
+            class="hamburger"
+            width="25px"
+            height="25px"
+          />
+        </button>
+        <button>
+          <img src="images/bigLogo.svg" alt="Logo" width="50px" height="50px" />
+        </button>
+
+        <div class="header-right">
+          <button>
+            <img
+              src="images/person.svg"
+              alt="PersonalAccaunt"
+              class="person"
+              width="25px"
+              height="25px"
+            />
+          </button>
+          <button>
+            <img
+              src="images/search.svg"
+              alt="Search"
+              width="30px"
+              height="30px"
+            />
+          </button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="main-container">
+        <h1>Popular Movies</h1>
+        <div class="main-sections">
+          <form class="side-bar" id="filterForm">
+            <section class="sort-section">
+              <button class="show-button" id="showSortBtn" type="button">
+                Sort
+                <span id="sortBtnSpan"
+                  ><img src="images/arrow.svg" alt="" width="20px"
+                /></span>
+              </button>
+              <div class="sort-by" id="sortBy">
+                <h3>Sort Results By</h3>
+                <select id="sortOptions">
+                  <option selected>Popularity Descending</option>
+                  <option>Popularity Ascending</option>
+                  <option>Rating Descending</option>
+                  <option>Rating Ascending</option>
+                  <option>Release Date Descending</option>
+                  <option>Release Date Ascending</option>
+                  <option>Title (A-Z)</option>
+                  <option>Title (Z-A)</option>
+                </select>
+              </div>
+            </section>
+
+           
+            <section class="filter-section">
+              <button class="show-button" id="showFilterBtn">
+                Filters
+                <span id="filterBtnSpan">
+                  <img src="images/arrow.svg" alt="" width="20px" />
+                </span>
+              </button>
+              <div class="filters" id="filters">
+                <fieldset class="show-me">
+                  <h3>
+                    Show Me
+                    <span
+                      ><img
+                        src="images/help.svg"
+                        alt="Hint"
+                        width="15px"
+                        height="15px"
+                    /></span>
+                  </h3>
+
+                  <label>
+                    <input type="radio" name="seen" id="showAll" checked />
+                    Everything</label
+                  >
+
+                  <label>
+                    <input type="radio" name="seen" id="showNotSeen" disabled />
+                    Movies I Haven’t Seen</label
+                  >
+                  <label>
+                    <input type="radio" name="seen" id="showSeen" disabled />
+                    Movies I Have Seen</label
+                  >
+                </fieldset>
+
+                <fieldset class="release-dates">
+                  <h3>Release Dates</h3>
+                  <label for="search-all-releases">
+                    <input
+                      type="checkbox"
+                      name="all releases"
+                      id="search-all-releases"
+                      checked
+                    />
+                    Search all releases?
+                  </label>
+                  <div class="other-releases" id="otherReleases">
+                    <label for="search-all-countries">
+                      <input
+                        type="checkbox"
+                        name="all countries"
+                        id="search-all-countries"
+                        class="search-all-countries"
+                        checked
+                      />
+                      Search all countries?
+                    </label>
+                    <br />
+                    <div class="select-counrty" id="selectCountry">
+                      <select id="country">
+                        <option value="AM" selected>Armenia</option>
+                        <option value="US">United States</option>
+                        <option value="RU">Russia</option>
+                        <option value="DE">Germany</option>
+                        <option value="FR">France</option>
+                        <option value="IT">Italy</option>
+                        <option value="ES">Spain</option>
+                        <option value="IN">India</option>
+                        <option value="CN">China</option>
+                        <option value="JP">Japan</option>
+                      </select>
+                    </div>
+                    <label for="theatrical">
+                      <input
+                        type="checkbox"
+                        name="theatrical"
+                        id="theatrical"
+                        checked
+                      />
+                      Theatrical (limited)
+                    </label>
+                    <br />
+                    <label for="premiere">
+                      <input
+                        type="checkbox"
+                        name="premiere"
+                        id="premiere"
+                        checked
+                      />
+                      Premiere
+                    </label>
+                    <br />
+                    <label for="digital">
+                      <input
+                        type="checkbox"
+                        name="digital"
+                        id="digital"
+                        checked
+                      />
+                      Digital
+                    </label>
+                    <br />
+                    <label for="physical">
+                      <input
+                        type="checkbox"
+                        name="physical"
+                        id="physical"
+                        checked
+                      />
+                      Physical
+                    </label>
+                    <br />
+                    <label for="tv">
+                      <input type="checkbox" name="tv" id="tv" checked />
+                      TV
+                    </label>
+                  </div>
+                  <div class="release-range">
+                    <div class="date-row">
+                      <label for="dateFrom">from</label>
+                      <input type="date" id="dateFrom" />
+                    </div>
+                    <div class="date-row">
+                      <label for="dateTo">to</label>
+                      <input type="date" id="dateTo" value="2026-02-07" />
+                    </div>
+                  </div>
+                </fieldset>
+
+                <fieldset class="genres">
+                  <h3>Genres</h3>
+                  <div class="genre-tags">
+                    <label for="genre-action">
+                      <input
+                        type="checkbox"
+                        id="genre-action"
+                        name="genre"
+                        value="Action"
+                      />Action
+                    </label>
+                    <label for="genre-adventure">
+                      <input
+                        type="checkbox"
+                        id="genre-adventure"
+                        name="genre"
+                        value="Adventure"
+                      />Adventure
+                    </label>
+                    <label for="genre-animation">
+                      <input
+                        type="checkbox"
+                        id="genre-animation"
+                        name="genre"
+                        value="Animation"
+                      />Animation
+                    </label>
+                    <label for="genre-comedy">
+                      <input
+                        type="checkbox"
+                        id="genre-comedy"
+                        name="genre"
+                        value="Comedy"
+                      />Comedy
+                    </label>
+                    <label for="genre-crime">
+                      <input
+                        type="checkbox"
+                        id="genre-crime"
+                        name="genre"
+                        value="Crime"
+                      />Crime
+                    </label>
+                    <label for="genre-documentary">
+                      <input
+                        type="checkbox"
+                        id="genre-documentary"
+                        name="genre"
+                        value="Documentary"
+                      />Documentary
+                    </label>
+                    <label for="genre-drama">
+                      <input
+                        type="checkbox"
+                        id="genre-drama"
+                        name="genre"
+                        value="Drama"
+                      />Drama
+                    </label>
+                    <label for="genre-family">
+                      <input
+                        type="checkbox"
+                        id="genre-family"
+                        name="genre"
+                        value="Family"
+                      />Family
+                    </label>
+                    <label for="genre-fantasy">
+                      <input
+                        type="checkbox"
+                        id="genre-fantasy"
+                        name="genre"
+                        value="Fantasy"
+                      />Fantasy
+                    </label>
+                    <label for="genre-history">
+                      <input
+                        type="checkbox"
+                        id="genre-history"
+                        name="genre"
+                        value="History"
+                      />History
+                    </label>
+                    <label for="genre-horror">
+                      <input
+                        type="checkbox"
+                        id="genre-horror"
+                        name="genre"
+                        value="Horror"
+                      />Horror
+                    </label>
+                    <label for="genre-music">
+                      <input
+                        type="checkbox"
+                        id="genre-music"
+                        name="genre"
+                        value="Music"
+                      />Music
+                    </label>
+                    <label for="genre-mystery">
+                      <input
+                        type="checkbox"
+                        id="genre-mystery"
+                        name="genre"
+                        value="Mystery"
+                      />Mystery
+                    </label>
+                    <label for="genre-romance">
+                      <input
+                        type="checkbox"
+                        id="genre-romance"
+                        name="genre"
+                        value="Romance"
+                      />Romance
+                    </label>
+                    <label for="genre-scifi">
+                      <input
+                        type="checkbox"
+                        id="genre-scifi"
+                        name="genre"
+                        value="Science Fiction"
+                      />Science Fiction
+                    </label>
+                    <label for="genre-tvmovie">
+                      <input
+                        type="checkbox"
+                        id="genre-tvmovie"
+                        name="genre"
+                        value="TV Movie"
+                      />TV Movie
+                    </label>
+                    <label for="genre-thriller">
+                      <input
+                        type="checkbox"
+                        id="genre-thriller"
+                        name="genre"
+                        value="Thriller"
+                      />Thriller
+                    </label>
+                    <label for="genre-war">
+                      <input
+                        type="checkbox"
+                        id="genre-war"
+                        name="genre"
+                        value="War"
+                      />War
+                    </label>
+                    <label for="genre-western">
+                      <input
+                        type="checkbox"
+                        id="genre-western"
+                        name="genre"
+                        value="Western"
+                      />Western
+                    </label>
+                  </div>
+                </fieldset>
+
+                <fieldset class="language">
+                  <h3>
+                    Language
+                    <span
+                      ><img
+                        src="images/help.svg"
+                        alt="Hint"
+                        width="15px"
+                        height="15px"
+                    /></span>
+                  </h3>
+                  <select id="selectLanguage">
+                    <option selected>Non Selected</option>
+                    <option value="en">English</option>
+                    <option value="hy">Armenian</option>
+                    <option value="ru">Russian</option>
+                    <option value="ar">Arabic</option>
+                  </select>
+                </fieldset>
+
+                <fieldset class="slider-field">
+                  <h3>User Score</h3>
+                  <input type="range" min="0" max="10" value="10" step="1" />
+                </fieldset>
+                <fieldset class="slider-field">
+                  <h3>Minimum User Votes</h3>
+                  <input type="range" min="0" max="500" value="0" step="10" />
+                </fieldset>
+
+                <fieldset class="slider-field">
+                  <h3>Runtime</h3>
+                  <input type="range" min="0" max="360" value="360" step="30" />
+                </fieldset>
+
+                <fieldset class="keywords">
+                  <h3>Keywords</h3>
+                  <input type="text" placeholder="Filter by keywords..." />
+                </fieldset>
+              </div>
+            </section>
+            <button type="submit" class="btn-search" id="searchBtn" disabled>
+              Search
+            </button>
+          </form>
+
+          <div class="movie-btn-section">
+            <div class="movie-section" id="movieSection"></div>
+            <button class="load-more" id="loadMoreBtn">Load More</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-section logo-section">
+          <img
+            src="images/bigLogo.svg"
+            alt="Logo"
+            height="80px"
+            class="footer-logo"
+          />
+          <button class="join-community">JOIN THE COMMUNITY</button>
+        </div>
+        <div class="footer-section basics">
+          <h4 class="footer-subtitle">THE BASICS</h4>
+          <a href="#">About TMDB</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Support Forums</a>
+          <a href="#">API Documentation</a>
+          <a href="#">System Status</a>
+        </div>
+        <div class="footer-section get-involved">
+          <h4 class="footer-subtitle">GET INVOLVED</h4>
+          <a href="#">Contribution Bible</a>
+          <a href="#">Add New Movie</a>
+          <a href="#">Add New TV Show</a>
+        </div>
+        <div class="footer-section community">
+          <h4 class="footer-subtitle">COMMUNITY</h4>
+          <a href="#">Guidelines</a>
+          <a href="#">Discussions</a>
+          <a href="#">Leaderboard</a>
+        </div>
+        <div class="footer-section legal">
+          <h4 class="footer-subtitle">LEGAL</h4>
+          <a href="#">Terms of Use</a>
+          <a href="#">API Terms of Use</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">DMCA Policy</a>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
